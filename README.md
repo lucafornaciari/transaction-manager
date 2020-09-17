@@ -1,4 +1,5 @@
-##TRANSACTION MANAGER
+
+# TRANSACTION MANAGER
 
 Transaction manager load customer transactions in several currencies and export it in EUR.
 #### Technologies
@@ -15,7 +16,7 @@ composer install
 ```
 ---
 
-###How to use
+## How to use
 
 You can retrieve the CSV, running the following code in your terminal:
 ```
@@ -23,6 +24,6 @@ php bin/console generate-report [customerId]
 ```
 The `customerId` param is mandatory
 
-###Managed Currencies
+## Managed Currencies
 Project manage this currencies:
 `EUR, USD, GBP`
