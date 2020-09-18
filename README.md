@@ -2,6 +2,9 @@
 # TRANSACTION MANAGER
 
 Transaction manager load customer transactions in several currencies and export it in EUR.
+
+This project use Symfony Command
+
 #### Technologies
 - `Symfony 5.1` 
 - `PHP 7.2`
