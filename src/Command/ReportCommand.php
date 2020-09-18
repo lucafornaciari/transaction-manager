@@ -80,6 +80,11 @@ class ReportCommand extends Command
         /** @var Transaction[] $transactions */
         $transactions = $this->transactionRepository->getByCustomerId($customerId);
 
+        if (empty($transactions)) {
+            $output->writeln('Customer ' . $customerId . ' haven\'t transactions');
+            return Command::FAILURE;
+        }
+
         //Convert transactions in Euro
         $transactions = array_map(function (Transaction $transaction) {
             return $this->currencyConverter->convert($transaction);
