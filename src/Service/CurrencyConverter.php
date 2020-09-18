@@ -24,6 +24,7 @@ class CurrencyConverter
      * @param string $currencyTo
      *
      * @return Transaction
+     * @throws CurrencyNotManagedException
      * @throws CurrencyWebServiceException
      */
     public function convert(Transaction $transaction, string $currencyTo = CurrencyConstants::EURO)
@@ -46,8 +47,12 @@ class CurrencyConverter
 
         $amount->setValue($amount->getValue() * $exchangeRate);
         $amount->setCode($currencyTo);
-        $amount->setSymbol(CurrencyConstants::getSymbol($currencyTo));
 
+        if (empty(CurrencyConstants::getSymbol($currencyTo))) {
+            throw new CurrencyNotManagedException($currencyTo. ' is not managed');
+        }
+
+        $amount->setSymbol(CurrencyConstants::getSymbol($currencyTo));
         $transaction->setAmount($amount);
 
         return $transaction;

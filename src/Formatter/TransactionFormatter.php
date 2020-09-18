@@ -6,9 +6,10 @@ namespace App\Formatter;
 
 use App\Entity\Currency;
 use App\Entity\Transaction;
+use App\Exception\CurrencyNotManagedException;
 use App\Utility\CurrencyConstants;
 
-class TransactionFormatter implements TransactionInterface
+class TransactionFormatter implements FormatterInterface
 {
     /**
      * This method is used when we retrieve info from db (CSV in this case). We map the DB Entity on ours Domain Entities.
@@ -16,7 +17,7 @@ class TransactionFormatter implements TransactionInterface
      * @param array $data
      *
      * @return Transaction
-     * @throws \Exception
+     * @throws CurrencyNotManagedException
      */
     public function format(array $data)
     {
@@ -26,7 +27,7 @@ class TransactionFormatter implements TransactionInterface
 
         $currencySymbol = mb_substr($data[2], 0, 1, 'UTF-8');
         if (empty(CurrencyConstants::CURRENCIES_SYMBOL[$currencySymbol])) {
-            throw new \Exception('Currency loaded is not supported');
+            throw new CurrencyNotManagedException('Currency loaded is not supported');
         }
 
         $amount = new Currency();

@@ -4,7 +4,7 @@
 namespace App\Formatter;
 
 
-interface TransactionInterface
+interface FormatterInterface
 {
     public function format(array $data);
 }
