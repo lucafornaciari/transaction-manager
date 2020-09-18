@@ -10,9 +10,10 @@ Transaction manager load customer transactions in several currencies and export 
 ```
 git clone https://github.com/lucafornaciari/transaction-manager.git
 ```
+
 ```
 cd transaction-manager
-composer install
+docker-compose up -d --build
 ```
 ---
 
@@ -20,9 +21,18 @@ composer install
 
 You can retrieve the CSV, running the following code in your terminal:
 ```
-php bin/console generate-report [customerId]
+docker-compose exec console bin/console generate-report [customerId]
 ```
 The `customerId` param is mandatory
+
+CSV file will be generated in the main folder
+
+## How to test
+
+You can start the tests, running the following code in your terminal:
+```
+docker-compose exec console ./vendor/bin/simple-phpunit
+```
 
 ## Managed Currencies
 Project manage this currencies:
