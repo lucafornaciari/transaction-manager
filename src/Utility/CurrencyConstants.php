@@ -21,11 +21,15 @@ class CurrencyConstants
     /**
      * @param string $code
      *
-     * @return string
+     * @return string|null
      */
     public static function getSymbol(string $code)
     {
         $values = array_flip(self::CURRENCIES_SYMBOL);
+
+        if (empty($values[$code])) {
+            return null;
+        }
 
         return $values[$code];
     }
