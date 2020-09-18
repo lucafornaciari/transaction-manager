@@ -23,12 +23,12 @@ class TransactionRepository
     }
 
     /**
+     * In a real project this method will do a direct query with a condition on customerId
+     *
      * @param $customerId
      * @return Transaction[]
      */
     public function getByCustomerId($customerId) {
-        //In a real project this method will do a direct query with a condition on customerId
-
         return array_filter($this->findAll(), function (Transaction $transaction) use ($customerId) {
             return $transaction->getCustomer() === $customerId;
         });
